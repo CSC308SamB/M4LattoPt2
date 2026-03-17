@@ -28,6 +28,26 @@ class ViewController: UIViewController {
        
     }
 
+    func getColors(from number: Int?) -> (Background: UIColor,textColor: UIColor){
+        guard let number = number else {
+            return (UIColor.purple, UIColor.white)
+        }
+        switch number{
+        case 1...10:
+            return(UIColor.red, UIColor.white)
+        case 11...20:
+            return(UIColor.green, UIColor.black)
+        case 21...30:
+            return(UIColor.blue, UIColor.white)
+        case 31...40:
+            return(UIColor.yellow, UIColor.black)
+        case 41...45:
+            return(UIColor.green, UIColor.black)
+        default:
+            return(UIColor.purple, UIColor.white)
+        }
+    }
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
@@ -49,30 +69,14 @@ class ViewController: UIViewController {
             
             label.text = "\(sortedNums[index])"
             
+            label.backgroundColor = getColors(from: sortedNums[index]).Background
+            label.textColor = getColors(from: sortedNums[index]).textColor
             
-            switch sortedNums[index]{
-            case 1...10:
-                label.backgroundColor = UIColor.red
-                label.textColor = .white
-            case 11...20:
-                label.backgroundColor = UIColor.green
-                label.textColor = .black
-            case 21...30:
-                label.backgroundColor = UIColor.blue
-                label.textColor = .white
-            case 31...40:
-                label.backgroundColor = UIColor.yellow
-                label.textColor = .black
-            case 41...45:
-                label.backgroundColor = UIColor.green
-                label.textColor = .black
-            default:
-                break
-            }
             
-            numLabel7.backgroundColor = UIColor.purple
-            numLabel7.textColor = .white
         }
+        let colors = getColors(from: nil)
+        numLabel7.backgroundColor = UIColor.Background
+        numLabel7.textColor = .textColors
     }
 
 
